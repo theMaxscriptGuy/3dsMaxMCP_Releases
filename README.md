@@ -97,6 +97,16 @@ More specific troubleshooting steps will be added as packaging and runtime detai
 
 This repository is for release-ready files, not necessarily the full development source tree. Keep committed files focused on installable plugin scripts, server binaries, documentation, and release metadata.
 
+## License
+
+This project is licensed under the terms in [LICENSE.md](LICENSE.md).
+
+Any use, redistribution, modification, or public reference to this project must include clear credit to the creator:
+
+```text
+Created by Videep Mishraa
+```
+
 ## Details To Add
 
 The following details are still pending and can be filled in as they become available:
