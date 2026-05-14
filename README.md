@@ -1,133 +1,79 @@
-# 3ds Max MCP Releases
+# 3ds Max AI Assistant
 
-Release repository for the 3ds Max MCP / 3ds Max AI Assistant package.
+3ds Max AI Assistant lets you control Autodesk 3ds Max with natural-language
+commands from inside 3ds Max.
 
-## Current Release Package
+## Install
 
-The installable package is in:
-
-```text
-dist-release\3ds Max AI Assistant\
-```
-
-Package contents:
+1. Open Autodesk 3ds Max.
+2. Go to `Scripting > Run Script...`.
+3. Select and run:
 
 ```text
-dist-release\
-+-- 3ds Max AI Assistant\
-|   +-- install_3dsmax_ai.ms
-|   +-- README.md
-|   +-- bin\
-|   |   +-- 3dsmax-mcp-server.exe
-|   +-- bridge\
-|   |   +-- 3dsmax_bridge.py
-|   +-- max\
-|       +-- launch_native_ui.py
-|       +-- startup_native.ms
-|       +-- app\
-|           +-- Native 3ds Max UI Python package
-+-- server\
-    +-- 3dsmax-mcp-server.exe
-USER_INSTALL_AND_USE.html
+install_3dsmax_ai.ms
 ```
 
-Use `dist-release\3ds Max AI Assistant` as the user-facing package. The
-`server` folder keeps a standalone copy of the packaged MCP server executable.
+4. When the installer finishes, add the new action to a toolbar, menu, quad
+   menu, or hotkey.
 
-For a browser-friendly install guide, open:
-
-```text
-USER_INSTALL_AND_USE.html
-```
-
-## Requirements
-
-- Autodesk 3ds Max with Python support enabled
-- Windows environment capable of running `3dsmax-mcp-server.exe`
-- Provider API key for OpenAI, OpenRouter, or Anthropic when using the native UI
-- Optional: Meshy API key for Meshy-backed workflows
-- Optional: `qt-material` installed in the 3ds Max Python environment for the enhanced theme
-
-The native UI falls back to a built-in Qt stylesheet if `qt-material` is not
-installed.
-
-## Installation
-
-For end users, the simplest instructions are in `USER_INSTALL_AND_USE.html`.
-
-1. Copy `dist-release\3ds Max AI Assistant` to a stable local folder.
-2. In 3ds Max, run:
-
-```text
-dist-release\3ds Max AI Assistant\install_3dsmax_ai.ms
-```
-
-The installer creates a user macro:
+Look for this action in 3ds Max customization:
 
 ```text
 Category: 3ds Max AI Assistant
 Action: Open 3ds Max AI Assistant
 ```
 
-Add that action to a toolbar, menu, quad menu, or hotkey from 3ds Max's
-customize UI tools.
+If the action does not appear immediately, restart 3ds Max and check the same
+category again.
 
-## Manual Launch
+## Open
 
-If you do not want to install the macro, open 3ds Max and run:
+Run `Open 3ds Max AI Assistant` from the toolbar, menu, quad menu, or hotkey
+where you added it.
 
-```text
-dist-release\3ds Max AI Assistant\max\launch_native_ui.py
-```
+## Use
 
-The launcher starts the local bridge in 3ds Max if needed, then opens the native
-assistant UI.
+1. Click `Start Server`.
+2. Choose `OpenAI`, `OpenRouter`, or `Anthropic`.
+3. Enter your provider API key.
+4. Click `Connect`.
+5. Type a command and send it.
 
-## Usage
-
-1. Start 3ds Max.
-2. Open the `3ds Max AI Assistant` action, or run `max\launch_native_ui.py`.
-3. Click `Start Server` if the MCP server is not already running.
-4. Choose OpenAI, OpenRouter, or Anthropic.
-5. Enter the provider API key and confirm the model.
-6. Click `Connect`.
-7. Send natural-language commands to control the 3ds Max scene.
-
-The native UI starts the packaged server from:
+Example:
 
 ```text
-dist-release\3ds Max AI Assistant\bin\3dsmax-mcp-server.exe
+Create a red sphere at 0,0,50
 ```
 
-## Ports
+## Meshy
 
-The native launcher assigns each 3ds Max instance a local bridge/MCP port pair.
-Defaults begin at:
+Meshy is optional and requires your own Meshy API key.
+
+1. Check `Enable Meshy`.
+2. Enter your Meshy API key.
+3. Click `Start Server`.
+4. Click `Connect`.
+
+For image-to-3D, click `Attach Images`, select `.png`, `.jpg`, or `.jpeg`
+reference images, then send a prompt that confirms credit spending.
+
+Example:
 
 ```text
-Bridge: 7171
-MCP:    3001
+Use the attached image to create a Meshy image-to-3D FBX model. I confirm spending credits.
 ```
-
-Additional 3ds Max instances use the next available local ports.
 
 ## Troubleshooting
 
-- Confirm the package folder was not moved after running the installer. If it
-  was moved, run `install_3dsmax_ai.ms` again from the new location.
-- Confirm `bin\3dsmax-mcp-server.exe` is present and allowed by Windows security.
-- Confirm 3ds Max can run Python scripts.
-- Confirm no other process is blocking the selected bridge or MCP ports.
-- If the enhanced theme is missing, install `qt-material` into the 3ds Max
-  Python environment, or use the built-in fallback theme.
+- If the action is missing, restart 3ds Max and check `Category: 3ds Max AI Assistant`.
+- If the server does not start, allow `3dsmax-mcp-server.exe` through Windows
+  security or antivirus prompts.
+- If the package folder was moved after installation, run `install_3dsmax_ai.ms`
+  again from the new location.
+- API keys are entered by you and are not bundled with this package.
 
 ## License
 
 This project is licensed under the terms in [LICENSE.md](LICENSE.md).
 
-Any use, redistribution, modification, or public reference to this project must
-include clear credit to the creator:
-
-```text
-Created by Videep Mishraa
-```
+Created by Videep Mishraa.
