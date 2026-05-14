@@ -1,7 +1,23 @@
 # 3ds Max AI Assistant
 
-3ds Max AI Assistant lets you control Autodesk 3ds Max with natural-language
-commands from inside 3ds Max.
+Introducing 3ds Max AI Assistant, a native AI workflow companion for Autodesk
+3ds Max. It lets artists, designers, and technical teams control 3ds Max with
+natural language directly from inside the application.
+
+Use it to create and edit scene objects, assign materials, modify transforms,
+inspect scenes, run simple automation, and generate assets through your
+preferred AI provider. The package includes a native 3ds Max Python UI, a local
+MCP server, and a Python bridge that executes commands in the active 3ds Max
+session.
+
+Key capabilities:
+
+- Natural-language control for 3ds Max scene operations
+- Support for OpenAI, Anthropic, and OpenRouter
+- Optional Meshy text-to-3D and image-to-3D workflows
+- Multi-instance support with configurable local ports
+- Bundled local server executable, so users do not need to run npm or Node
+- Simple MaxScript install flow
 
 ## Install
 
