@@ -42,7 +42,14 @@ where you added it.
 Example:
 
 ```text
-Create a red sphere at 0,0,50
+Hey there! Can you tell me if there are any duplicate objects in the scene?
+```
+
+<img width="1918" height="779" alt="SimpleQC_1" src="https://github.com/user-attachments/assets/fcc51656-8815-4e3b-881c-9991925a0a93" />
+
+
+```text
+QC this file and save the output in JSON format.
 ```
 
 ## Meshy
