@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3ds Max AI Assistant - Install And Use</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0c1116;
+      --panel: #121a21;
+      --panel-2: #17232b;
+      --text: #e6f7fa;
+      --muted: #9db9c0;
+      --accent: #00bcd4;
+      --accent-2: #57e389;
+      --border: #27404a;
+      --warn: #ffcc66;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    header {
+      padding: 44px 28px 30px;
+      border-bottom: 1px solid var(--border);
+      background: #101922;
+    }
+
+    main {
+      width: min(980px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 28px 0 48px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 24px;
+      color: #ffffff;
+    }
+
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 17px;
+      color: var(--accent);
+    }
+
+    p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    code {
+      color: #d7fbff;
+      background: #0a1419;
+      border: 1px solid #1c3942;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: Consolas, "Cascadia Mono", monospace;
+      font-size: 0.95em;
+    }
+
+    pre {
+      margin: 12px 0 0;
+      padding: 14px 16px;
+      overflow-x: auto;
+      border-radius: 8px;
+      background: #081116;
+      border: 1px solid #203842;
+      color: #d7fbff;
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+      border: none;
+    }
+
+    .subtitle {
+      max-width: 720px;
+      margin-top: 12px;
+      font-size: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .tile,
+    section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .tile {
+      padding: 16px;
+    }
+
+    .tile strong {
+      display: block;
+      color: var(--accent-2);
+      margin-bottom: 4px;
+    }
+
+    section {
+      margin-top: 18px;
+      padding: 24px;
+    }
+
+    ol,
+    ul {
+      margin: 10px 0 0;
+      padding-left: 24px;
+      color: var(--muted);
+    }
+
+    li + li {
+      margin-top: 7px;
+    }
+
+    .callout {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 8px;
+      background: var(--panel-2);
+      border: 1px solid #31515d;
+      color: var(--muted);
+    }
+
+    .warning {
+      border-color: #6b5422;
+      background: #1e1a10;
+    }
+
+    .warning strong {
+      color: var(--warn);
+    }
+
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .steps li {
+      position: relative;
+      padding-left: 42px;
+      min-height: 30px;
+    }
+
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: -1px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #003f49;
+      border: 1px solid var(--accent);
+      color: #dffcff;
+      font-weight: 700;
+    }
+
+    footer {
+      width: min(980px, calc(100% - 40px));
+      margin: 0 auto 36px;
+      color: #78949b;
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: 1fr; }
+      header { padding-top: 32px; }
+      section { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <main>
+      <h1>3ds Max AI Assistant</h1>
+      <p class="subtitle">Install and use the packaged assistant inside Autodesk 3ds Max. This package includes the native UI, bridge script, and bundled MCP server executable.</p>
+      <div class="grid">
+        <div class="tile">
+          <strong>Install</strong>
+          Run one MaxScript from 3ds Max.
+        </div>
+        <div class="tile">
+          <strong>Open</strong>
+          Launch from the 3ds Max action category.
+        </div>
+        <div class="tile">
+          <strong>Use</strong>
+          Start the server, connect, and type commands.
+        </div>
+      </div>
+    </main>
+  </header>
+
+  <main>
+    <section>
+      <h2>1. Install Using The MaxScript</h2>
+      <ol class="steps">
+        <li>Open 3ds Max.</li>
+        <li>Go to <code>Scripting &gt; Run Script...</code>.</li>
+        <li>Select <code>install_3dsmax_ai.ms</code> from this package folder.</li>
+        <li>The script installs a macro action inside 3ds Max.</li>
+        <li>Add the action to a toolbar, menu, quad menu, or hotkey.</li>
+      </ol>
+
+      <div class="callout">
+        In 3ds Max customization, look for:
+        <pre><code>Category: 3ds Max AI Assistant
+Action: Open 3ds Max AI Assistant</code></pre>
+      </div>
+
+      <div class="callout warning">
+        <strong>Tip:</strong> If the action does not appear immediately, restart 3ds Max and check the same category again.
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Open The Tool</h2>
+      <p>Run the installed action from your toolbar, menu, quad menu, or hotkey.</p>
+      <pre><code>3ds Max AI Assistant &gt; Open 3ds Max AI Assistant</code></pre>
+      <p>The assistant window opens inside 3ds Max.</p>
+    </section>
+
+    <section>
+      <h2>3. Basic Usage</h2>
+      <ol class="steps">
+        <li>Confirm the MCP and Bridge ports.</li>
+        <li>Click <code>Apply Ports</code>.</li>
+        <li>Click <code>Start Server</code>.</li>
+        <li>Choose an LLM provider: <code>OpenAI</code>, <code>OpenRouter</code>, or <code>Anthropic</code>.</li>
+        <li>Enter your provider API key.</li>
+        <li>If using OpenRouter, click <code>Load Models</code> and choose a model.</li>
+        <li>Click <code>Connect</code>.</li>
+        <li>Type a command and click <code>Send</code>.</li>
+      </ol>
+
+      <h3>Example Prompt</h3>
+      <pre><code>Create a red sphere at 0,0,50</code></pre>
+    </section>
+
+    <section>
+      <h2>Meshy</h2>
+      <p>Meshy is optional and requires your own Meshy API key.</p>
+      <ol class="steps">
+        <li>Check <code>Enable Meshy</code>.</li>
+        <li>Enter your Meshy API key.</li>
+        <li>Click <code>Start Server</code>.</li>
+        <li>Click <code>Connect</code>.</li>
+      </ol>
+
+      <h3>Image-To-3D</h3>
+      <ol>
+        <li>Click <code>Attach Images</code>.</li>
+        <li>Select one or more <code>.png</code>, <code>.jpg</code>, or <code>.jpeg</code> files.</li>
+        <li>Send a prompt that confirms credit spending.</li>
+      </ol>
+      <pre><code>Use the attached image to create a Meshy image-to-3D FBX model. I confirm spending credits.</code></pre>
+    </section>
+
+    <section>
+      <h2>Notes</h2>
+      <ul>
+        <li>You do not need to run <code>npm</code>.</li>
+        <li>The packaged server starts automatically from <code>bin\3dsmax-mcp-server.exe</code>.</li>
+        <li>API keys are entered by you and are not bundled with this package.</li>
+        <li>If the server does not start, check whether Windows security or antivirus is blocking the server exe.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    3ds Max AI Assistant package guide.
+  </footer>
+</body>
+</html>

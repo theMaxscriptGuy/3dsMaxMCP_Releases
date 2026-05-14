@@ -1,122 +1,133 @@
 # 3ds Max MCP Releases
 
-Release repository for the 3ds Max MCP tool.
+Release repository for the 3ds Max MCP / 3ds Max AI Assistant package.
 
-This repository is intended to hold the files needed to install and run the 3ds Max MCP integration, including:
+## Current Release Package
 
-- 3ds Max plugin Python scripts
-- MCP server executable builds
-- Release notes and setup instructions
-
-## Repository Layout
-
-The release package should be organized so users can quickly identify what needs to be copied into 3ds Max and what needs to be run as the MCP server.
+The installable package is in:
 
 ```text
-.
-+-- plugins/
-|   +-- 3ds Max Python plugin scripts
-+-- server/
-|   +-- MCP server executable and supporting files
-+-- docs/
-|   +-- Additional setup or troubleshooting notes
-+-- README.md
+dist-release\3ds Max AI Assistant\
 ```
 
-If a release uses a different layout, document the exact file locations in the release notes.
+Package contents:
+
+```text
+dist-release\
++-- 3ds Max AI Assistant\
+|   +-- install_3dsmax_ai.ms
+|   +-- README.md
+|   +-- bin\
+|   |   +-- 3dsmax-mcp-server.exe
+|   +-- bridge\
+|   |   +-- 3dsmax_bridge.py
+|   +-- max\
+|       +-- launch_native_ui.py
+|       +-- startup_native.ms
+|       +-- app\
+|           +-- Native 3ds Max UI Python package
++-- server\
+    +-- 3dsmax-mcp-server.exe
+USER_INSTALL_AND_USE.html
+```
+
+Use `dist-release\3ds Max AI Assistant` as the user-facing package. The
+`server` folder keeps a standalone copy of the packaged MCP server executable.
+
+For a browser-friendly install guide, open:
+
+```text
+USER_INSTALL_AND_USE.html
+```
 
 ## Requirements
 
-- Autodesk 3ds Max
-- Python support enabled in 3ds Max
-- A compatible MCP client
-- Windows environment capable of running the included MCP server executable
+- Autodesk 3ds Max with Python support enabled
+- Windows environment capable of running `3dsmax-mcp-server.exe`
+- Provider API key for OpenAI, OpenRouter, or Anthropic when using the native UI
+- Optional: Meshy API key for Meshy-backed workflows
+- Optional: `qt-material` installed in the 3ds Max Python environment for the enhanced theme
 
-Version-specific requirements will be added once the supported 3ds Max versions, Python version, and server runtime details are finalized.
+The native UI falls back to a built-in Qt stylesheet if `qt-material` is not
+installed.
 
 ## Installation
 
-### 1. Install the 3ds Max Plugin Scripts
+For end users, the simplest instructions are in `USER_INSTALL_AND_USE.html`.
 
-Copy the provided plugin Python script files into the appropriate 3ds Max scripts or startup scripts location.
-
-The exact install path depends on the final plugin packaging and target 3ds Max version. Add the confirmed destination path here before release.
-
-### 2. Install the MCP Server
-
-Place the MCP server executable and any supporting files in a stable local directory.
-
-Recommended example:
+1. Copy `dist-release\3ds Max AI Assistant` to a stable local folder.
+2. In 3ds Max, run:
 
 ```text
-C:\mcp\3dsmax-mcp\
+dist-release\3ds Max AI Assistant\install_3dsmax_ai.ms
 ```
 
-Keep the server executable, configuration files, and required runtime files together unless the release notes say otherwise.
+The installer creates a user macro:
 
-### 3. Configure Your MCP Client
+```text
+Category: 3ds Max AI Assistant
+Action: Open 3ds Max AI Assistant
+```
 
-Add the 3ds Max MCP server to your MCP client configuration.
+Add that action to a toolbar, menu, quad menu, or hotkey from 3ds Max's
+customize UI tools.
 
-The final configuration block will be added once the executable name, command arguments, and environment variables are confirmed.
+## Manual Launch
+
+If you do not want to install the macro, open 3ds Max and run:
+
+```text
+dist-release\3ds Max AI Assistant\max\launch_native_ui.py
+```
+
+The launcher starts the local bridge in 3ds Max if needed, then opens the native
+assistant UI.
 
 ## Usage
 
 1. Start 3ds Max.
-2. Make sure the plugin scripts are loaded.
-3. Start or connect through the MCP server using your MCP client.
-4. Use the MCP client to send supported commands to 3ds Max.
+2. Open the `3ds Max AI Assistant` action, or run `max\launch_native_ui.py`.
+3. Click `Start Server` if the MCP server is not already running.
+4. Choose OpenAI, OpenRouter, or Anthropic.
+5. Enter the provider API key and confirm the model.
+6. Click `Connect`.
+7. Send natural-language commands to control the 3ds Max scene.
 
-Detailed command examples will be added after the tool interface and supported operations are finalized.
+The native UI starts the packaged server from:
 
-## Release Notes
+```text
+dist-release\3ds Max AI Assistant\bin\3dsmax-mcp-server.exe
+```
 
-Each release should include:
+## Ports
 
-- Release version
-- Supported 3ds Max versions
-- Included plugin script files
-- Included MCP server executable version
-- New features
-- Fixes
-- Known issues
-- Upgrade notes, if applicable
+The native launcher assigns each 3ds Max instance a local bridge/MCP port pair.
+Defaults begin at:
+
+```text
+Bridge: 7171
+MCP:    3001
+```
+
+Additional 3ds Max instances use the next available local ports.
 
 ## Troubleshooting
 
-Common areas to check:
-
-- Confirm 3ds Max has loaded the plugin Python scripts.
-- Confirm the MCP server executable starts without errors.
-- Confirm the MCP client configuration points to the correct executable path.
-- Confirm any required ports, permissions, or local security prompts are allowed.
-
-More specific troubleshooting steps will be added as packaging and runtime details are finalized.
-
-## Development Notes
-
-This repository is for release-ready files, not necessarily the full development source tree. Keep committed files focused on installable plugin scripts, server binaries, documentation, and release metadata.
+- Confirm the package folder was not moved after running the installer. If it
+  was moved, run `install_3dsmax_ai.ms` again from the new location.
+- Confirm `bin\3dsmax-mcp-server.exe` is present and allowed by Windows security.
+- Confirm 3ds Max can run Python scripts.
+- Confirm no other process is blocking the selected bridge or MCP ports.
+- If the enhanced theme is missing, install `qt-material` into the 3ds Max
+  Python environment, or use the built-in fallback theme.
 
 ## License
 
 This project is licensed under the terms in [LICENSE.md](LICENSE.md).
 
-Any use, redistribution, modification, or public reference to this project must include clear credit to the creator:
+Any use, redistribution, modification, or public reference to this project must
+include clear credit to the creator:
 
 ```text
 Created by Videep Mishraa
 ```
-
-## Details To Add
-
-The following details are still pending and can be filled in as they become available:
-
-- Official tool name
-- Supported 3ds Max versions
-- Plugin script filenames
-- Final install paths
-- MCP server executable name
-- MCP client configuration example
-- Startup workflow
-- Supported commands or features
-- Known limitations
