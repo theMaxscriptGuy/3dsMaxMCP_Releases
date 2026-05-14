@@ -126,7 +126,7 @@ language.
 ## What is an example command?
 
 ```text
-Create a red sphere at 0,0,50
+Create a cityscape using boxes only. Make sure to use max 50 boxes. 
 ```
 
 ## What are the main risks?
