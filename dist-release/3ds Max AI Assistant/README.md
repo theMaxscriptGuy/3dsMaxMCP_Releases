@@ -83,6 +83,8 @@ Use the attached image to create a Meshy image-to-3D FBX model. I confirm spendi
 
 - You do not need Node.js or npm.
 - The local server starts from `bin\3dsmax-mcp-server.exe`.
+- Claude Desktop integration is included as `bin\3dsmax-claude-mcp.exe`.
+- See `claude-desktop\CLAUDE_DESKTOP.md` for Claude setup.
 - API keys are entered by you and are not included in this package.
 - If the server does not start, check whether Windows security or antivirus is
   blocking `bin\3dsmax-mcp-server.exe`.

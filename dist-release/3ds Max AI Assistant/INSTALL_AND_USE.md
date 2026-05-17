@@ -28,6 +28,12 @@ Confirm this file exists:
 C:\mcp\3dsmax-mcp\dist-release\3ds Max AI Assistant\bin\3dsmax-mcp-server.exe
 ```
 
+For Claude Desktop support, also confirm:
+
+```text
+C:\mcp\3dsmax-mcp\dist-release\3ds Max AI Assistant\bin\3dsmax-claude-mcp.exe
+```
+
 ## Install In 3ds Max
 
 1. Open 3ds Max.
@@ -85,5 +91,7 @@ Use the attached image to create a Meshy image-to-3D FBX model. I confirm spendi
 ## Notes
 
 - The package uses `bin\3dsmax-mcp-server.exe`; users do not need to run `npm`.
+- The package also includes `bin\3dsmax-claude-mcp.exe` for Claude Desktop.
+- Claude Desktop setup instructions are in `claude-desktop\CLAUDE_DESKTOP.md`.
 - API keys are entered by the user and are not bundled with the package.
 - If 3ds Max was already open during install, restart Max if the new macro action does not appear immediately.
