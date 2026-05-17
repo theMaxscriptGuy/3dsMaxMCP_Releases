@@ -19,6 +19,7 @@ class WorkerSignals(QtCore.QObject):
     message = QtCore.Signal(str, str)
     status = QtCore.Signal(str)
     tool_call = QtCore.Signal(str, str)
+    usage = QtCore.Signal(object)
     models_loaded = QtCore.Signal(list)
     connected = QtCore.Signal(object, object, int)
     finished = QtCore.Signal()
@@ -482,6 +483,7 @@ class NativeAssistantWindow(QtWidgets.QDialog):
         self._send_signals = signals
         signals.message.connect(self._append)
         signals.tool_call.connect(self._append_tool_call)
+        signals.usage.connect(self._append_usage)
         signals.error.connect(lambda msg: self._append("error", msg))
         signals.finished.connect(self._finish_send)
 
@@ -493,6 +495,7 @@ class NativeAssistantWindow(QtWidgets.QDialog):
                     api_key,
                     self.model_input.currentText().strip() or settings.MODELS.get(provider, ""),
                     on_tool_call=lambda name, args: signals.tool_call.emit(name, json.dumps(args)),
+                    on_usage=lambda usage: signals.usage.emit(usage),
                 )
                 signals.message.emit("assistant", reply or "(no reply)")
             except Exception as exc:
@@ -537,6 +540,31 @@ class NativeAssistantWindow(QtWidgets.QDialog):
             self._escape(args_json[:400]),
         ))
         self._refresh_bridge_status()
+
+    def _append_usage(self, usage):
+        if usage.get("summary"):
+            self._append(
+                "system",
+                "Turn total ({0}, {1} call{2}): input {3:,}, output {4:,}, total {5:,}".format(
+                    usage.get("provider", "llm"),
+                    usage.get("calls", 0),
+                    "" if usage.get("calls", 0) == 1 else "s",
+                    usage.get("input_tokens", 0),
+                    usage.get("output_tokens", 0),
+                    usage.get("total_tokens", 0),
+                ),
+            )
+            return
+
+        self._append(
+            "system",
+            "Tokens ({0}): input {1:,}, output {2:,}, total {3:,}".format(
+                usage.get("provider", "llm"),
+                usage.get("input_tokens", 0),
+                usage.get("output_tokens", 0),
+                usage.get("total_tokens", 0),
+            ),
+        )
 
     def _show_available_tools(self):
         if not self.mcp or not self.mcp.tools:

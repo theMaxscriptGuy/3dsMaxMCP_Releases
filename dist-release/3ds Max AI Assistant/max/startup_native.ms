@@ -1,15 +1,14 @@
 -- Optional helper for launching the native Python UI from 3ds Max.
+-- Edit nativeUiPath if this repository lives somewhere else.
 
 macroScript ThreeDsMaxMcpNativeUI
-category:"3ds Max AI Assistant"
-tooltip:"Open 3ds Max AI Assistant"
-buttonText:"AI Assistant"
+category:"3ds Max MCP"
+tooltip:"Open 3ds Max MCP Native UI"
+buttonText:"MCP AI"
 (
     on execute do
     (
-        local scriptPath = getSourceFileName()
-        local maxDir = getFilenamePath scriptPath
-        nativeUiPath = maxDir + @"\launch_native_ui.py"
+        nativeUiPath = @"C:\mcp\3dsmax-mcp\3dsmax-native\launch_native_ui.py"
         python.ExecuteFile nativeUiPath
     )
 )

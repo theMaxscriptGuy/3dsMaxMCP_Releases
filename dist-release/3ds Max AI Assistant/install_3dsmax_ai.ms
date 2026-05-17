@@ -1,9 +1,8 @@
 -- 3ds Max AI Assistant installer.
--- Run this file from inside the release package folder.
+-- This file is copied into the release package with C:\mcp\3dsmax-mcp\dist-release\3ds Max AI Assistant replaced.
 
 (
-    local installerPath = getSourceFileName()
-    local packageRoot = getFilenamePath installerPath
+    local packageRoot = @"C:\mcp\3dsmax-mcp\dist-release\3ds Max AI Assistant"
     local launcherPath = packageRoot + @"\max\launch_native_ui.py"
     local macrosDir = getDir #userMacros
     local macroPath = macrosDir + @"\ThreeDsMaxAIAssistant.mcr"
